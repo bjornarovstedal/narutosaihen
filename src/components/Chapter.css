@@ -1,0 +1,392 @@
+/* Chapter-specific styling */
+
+.chapter-title-english,
+.chapter-title-romanized,
+.chapter-title-kanji {
+  text-align: center;
+  margin: 0.25rem 0;
+}
+
+.chapter-title-english {
+  font-size: 3rem;
+  font-style: italic;
+}
+
+.chapter-title-romanized {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+.chapter-title-kanji {
+  color: #a3a3a3;
+  font-size: 2em;
+  font-style: italic;
+  margin-bottom: 3rem;
+}
+
+.chapter {
+  max-width: 700px;
+  margin: 2rem auto;
+  margin-left: max(calc(50% - 350px), 284px);
+  padding: 2.5rem 2rem;
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
+}
+
+.chapter-swipe-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.chapter-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
+  box-sizing: border-box;
+}
+
+.chapter-preview-prev {
+  left: 0;
+}
+
+.chapter-preview-next {
+  left: 0;
+}
+
+.chapter-content {
+  font-size: 1.1rem;
+  line-height: 1.625;
+  color: #000000;
+  white-space: pre-line;
+}
+
+.chapter-content .chapter-line {
+  text-indent: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+.chapter-content .chapter-line:first-of-type {
+  text-indent: 0;
+}
+
+.chapter-content .chapter-blank-line + .chapter-line {
+  text-indent: 0;
+}
+
+.chapter-content .chapter-blank-line {
+  height: 2em;
+}
+
+.chapter-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.chapter-title-with-nav {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3.5rem;
+  margin: 1rem 0;
+}
+
+.chapter-title-with-nav .nav-text {
+  font-size: 2.75rem;
+  width: 4rem;
+}
+
+.chapter-title-with-nav .chapter-title-english {
+  margin: 0;
+  width: 30rem;
+  text-align: center;
+}
+
+.nav-text {
+  font-size: 2rem;
+  font-family: 'Georgia', Georgia, serif;
+  color: #000000;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  width: 3rem;
+  display: flex;
+  align-items: flex-start;
+  white-space: nowrap;
+  outline: none;
+  user-select: none;
+}
+
+.nav-text.nav-left {
+  justify-content: flex-end;
+}
+
+.nav-text.nav-right {
+  justify-content: flex-start;
+}
+
+.nav-text:hover:not(.disabled) {
+  opacity: 0.7;
+}
+
+.nav-text.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.current-part-label {
+  font-size: 1.75rem;
+  font-weight: bold;
+  width: 30rem;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.2;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.chapter-navigation-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid #d0d0d0;
+}
+
+.nav-button {
+  font-size: 1.2rem;
+  font-family: 'Georgia', Georgia, serif;
+  color: #000000;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  user-select: none;
+  padding: 0.5rem 1rem;
+}
+
+.nav-button:hover:not(.disabled) {
+  opacity: 0.7;
+}
+
+.nav-button.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.current-chapter-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 20rem;
+  text-align: center;
+  white-space: nowrap;
+  color: #000000;
+}
+
+.team-viewer {
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 22.5rem;
+  margin-bottom: 5rem;
+}
+
+.team-viewer-image {
+  max-width: 100%;
+  width: 22.5rem;
+  height: auto;
+}
+
+.team-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.team-header h3 {
+  margin: 0;
+  font-size: 1.62rem;
+  width: 13.5rem;
+  height: 3.6rem;
+  white-space: pre-line;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-info {
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.team-info h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.team-members {
+  margin-bottom: 1rem;
+}
+
+.team-member {
+  margin: 0.5rem 0;
+  font-size: 1.08rem;
+}
+
+.member-name {
+  font-weight: normal;
+}
+
+.member-name.leader {
+  font-weight: bold;
+}
+
+.team-description {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.team-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-arrow {
+  padding: 0.36rem 0.72rem;
+  font-size: 1.08rem;
+  background: transparent;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  outline: none;
+  user-select: none;
+}
+
+.nav-arrow:hover:not(:disabled) {
+  color: #000000;
+}
+
+.nav-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.team-counter {
+  font-size: 1rem;
+  color: #666;
+}
+
+.interactive-image .image-info {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(20, 33, 61, 0.95);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  z-index: 10;
+  max-width: 90%;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(20,33,61,0.12);
+}
+
+/* Mobile Responsive Styles for Chapter */
+@media (max-width: 768px) {
+  .chapter {
+    max-width: 100%;
+    margin: 1rem auto;
+    padding: 1.5rem 1rem;
+    touch-action: pan-y;
+    overscroll-behavior-x: none;
+  }
+
+  .chapter-preview {
+    max-width: 100%;
+    margin: 1rem auto;
+    padding: 1.5rem 1rem;
+  }
+
+  .chapter-title-english {
+    font-size: 2.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .chapter-title-romanized {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .chapter-title-kanji {
+    font-size: 1.875rem;
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .chapter-content {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .chapter-title-with-nav {
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .chapter-title-with-nav .nav-text {
+    font-size: 1.5rem;
+    width: 2rem;
+    flex-shrink: 0;
+  }
+
+  .chapter-title-with-nav .chapter-title-english {
+    width: auto;
+    flex: 1;
+    min-width: 0;
+    font-size: 1.875rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .current-part-label {
+    font-size: 1.5rem;
+    width: auto;
+    max-width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 0 0.5rem;
+  }
+
+  .chapter-navigation {
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .nav-text {
+    font-size: 1.5rem;
+    width: 2rem;
+  }
+}

@@ -1,0 +1,444 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* Global body styles */
+body {
+  background: linear-gradient(to bottom, #ffffff 0%, #d1d1d1 100%);
+  background-attachment: fixed;
+  margin: 0;
+  font-family: 'Georgia', Georgia, serif;
+  color: #000000;
+  padding-bottom: 3rem;
+  min-height: 100vh;
+}
+
+/* Reader container - shared across all reader views */
+.reader-container {
+  display: flex;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Side navigation button */
+.side-home-button {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 100vh;
+  background: #000000;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 3vh;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 2000;
+  flex-shrink: 0;
+}
+
+.side-home-button:hover {
+  background: #333333;
+}
+
+/* Mobile menu button */
+.mobile-menu-button {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1002;
+  background: #000000;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-menu-button.at-top {
+  background: #000000;
+  opacity: 1;
+}
+
+.mobile-menu-button.over-text {
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0.6;
+}
+
+.mobile-menu-button.over-text:hover {
+  opacity: 0.9;
+}
+
+.mobile-menu-button span {
+  display: block;
+  width: 2rem;
+  height: 3px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+/* Chapter menu sidebar */
+.chapter-menu {
+  position: fixed;
+  left: 2rem;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  transition: left 0.3s ease;
+}
+
+.chapter-menu.menu-hidden {
+  left: -250px;
+  pointer-events: none;
+}
+
+.menu-sticky-header {
+  flex-shrink: 0;
+  padding: 2rem 1rem 0 1rem;
+  background: transparent;
+}
+
+.menu-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 1rem 2rem 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.menu-scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.home-button-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.home-button {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.8rem;
+  background: transparent;
+  color: #000000;
+  border: 2px solid #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 0.15em;
+}
+
+.home-button:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.chapter-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0rem 1rem;
+  font-family: 'Georgia', Georgia, serif;
+}
+
+/* Shared chevron styles for expand/collapse */
+.chevron {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transform-origin: 40% 50%;
+}
+
+.chevron-down {
+  transform: rotate(90deg);
+}
+
+.chevron-up {
+  transform: rotate(-90deg);
+}
+
+.eye-icon {
+  height: 24px;
+  width: auto;
+  display: block;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.chapter-menu h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #a3a3a3;
+  text-align: left;
+  padding: 0;
+}
+
+.clickable-header {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.clickable-header:hover {
+  color: #000000;
+}
+
+.chapter-menu ul {
+  list-style: none;
+  padding: 0;
+  padding-bottom: 0.5rem;
+  margin: 0;
+  max-height: 2000px;
+  overflow: hidden;
+  opacity: 1;
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding-bottom 0.4s ease-in-out;
+}
+
+.chapter-menu ul.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding-bottom: 0;
+}
+
+.chapter-menu > ul > li {
+  margin-bottom: 1rem;
+}
+
+.part-section {
+  margin-bottom: 2rem;
+}
+
+.part-section:last-child {
+  margin-bottom: 8rem;
+}
+
+.part-header {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000000;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  user-select: none;
+  font-family: 'Georgia', Georgia, serif;
+}
+
+.chapters-in-part {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chapters-in-part > li {
+  margin-bottom: 0;
+}
+
+.chapter-title {
+  padding: 0.3rem 1rem;
+  margin-bottom: 0rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #000000;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid transparent;
+}
+
+.chapter-title.unavailable {
+  color: #a3a3a3;
+  cursor: default;
+  opacity: 0.6;
+  user-select: none;
+  pointer-events: none;
+}
+
+.chapter-title.unavailable:hover {
+  color: #a3a3a3;
+}
+
+.chapter-title:hover:not(.unavailable) {
+  border-color: #000000;
+}
+
+.chapter-wrapper {
+  transition: background 0.2s ease;
+  padding: 0;
+  margin: 0 0 0.5rem 0;
+}
+
+.chapter-wrapper.active-chapter {
+  background: #000000;
+  border-radius: 0;
+}
+
+.chapter-wrapper.active-chapter .chapter-title {
+  color: #ffffff;
+}
+
+.chapter-wrapper.active-chapter .part-menu li {
+  color: #ffffff;
+}
+
+.chapter-title.active {
+  font-weight: bold;
+  border-radius: 0;
+}
+
+.part-menu {
+  list-style: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  max-height: 500px;
+  overflow: hidden;
+  opacity: 1;
+  transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out, margin-top 0.3s ease-in-out, margin-bottom 0.3s ease-in-out;
+}
+
+.part-menu.collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.part-menu li {
+  padding: 0.25rem 1.25rem;
+  margin-bottom: 0.1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 0.9rem;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid transparent;
+}
+
+.part-menu li:last-child {
+  margin-bottom: 0;
+}
+
+.part-menu li.unavailable {
+  color: #a3a3a3;
+  cursor: default;
+  opacity: 0.6;
+  user-select: none;
+  pointer-events: none;
+}
+
+.part-menu li.unavailable:hover {
+  background-color: transparent;
+}
+
+.part-menu li:hover:not(.unavailable) {
+  border-color: #000000;
+}
+
+.part-menu li.active {
+  font-weight: bold;
+  border-radius: 0;
+}
+
+/* Legacy App component styles */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile Responsive Styles for shared navigation */
+@media (max-width: 768px) {
+  .side-home-button {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: flex;
+  }
+
+  .chapter-menu {
+    position: fixed;
+    left: -100%;
+    margin-left: 0;
+    transform: none;
+    width: 80%;
+    max-width: 300px;
+    background: rgba(0, 0, 0, 0.98);
+    z-index: 999;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    padding-top: 5rem;
+    color: #ffffff;
+  }
+  
+  .chapter-menu h3,
+  .chapter-menu .part-header,
+  .chapter-menu .chapter-title,
+  .chapter-menu .part-menu li {
+    color: #ffffff;
+    border-color: transparent;
+  }
+  
+  .chapter-menu .chapter-title:hover:not(.unavailable),
+  .chapter-menu .part-menu li:hover:not(.unavailable) {
+    border-color: #ffffff;
+  }
+  
+  .chapter-menu .home-button {
+    background: transparent;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  
+  .chapter-menu .home-button:hover {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .chapter-menu.mobile-open {
+    left: 0;
+  }
+}
