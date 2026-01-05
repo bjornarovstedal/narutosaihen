@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<Article />} />

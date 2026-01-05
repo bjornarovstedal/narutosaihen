@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../App.css';
 
 const teams = [
@@ -167,6 +167,14 @@ const teams = [
 
 function TeamViewer() {
   const [currentTeam, setCurrentTeam] = useState(0);
+
+  // Preload all team images
+  useEffect(() => {
+    teams.forEach(team => {
+      const img = new Image();
+      img.src = team.image;
+    });
+  }, []);
 
   const nextTeam = () => {
     setCurrentTeam((prev) => (prev + 1) % teams.length);
