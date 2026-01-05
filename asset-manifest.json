@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/narutosaihen/static/css/main.f6a733a2.css",
-    "main.js": "/narutosaihen/static/js/main.23a4a0b4.js",
+    "main.js": "/narutosaihen/static/js/main.be2fc03f.js",
     "static/js/453.ec40b818.chunk.js": "/narutosaihen/static/js/453.ec40b818.chunk.js",
     "index.html": "/narutosaihen/index.html",
     "main.f6a733a2.css.map": "/narutosaihen/static/css/main.f6a733a2.css.map",
-    "main.23a4a0b4.js.map": "/narutosaihen/static/js/main.23a4a0b4.js.map",
+    "main.be2fc03f.js.map": "/narutosaihen/static/js/main.be2fc03f.js.map",
     "453.ec40b818.chunk.js.map": "/narutosaihen/static/js/453.ec40b818.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f6a733a2.css",
-    "static/js/main.23a4a0b4.js"
+    "static/js/main.be2fc03f.js"
   ]
 }
