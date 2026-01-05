@@ -5,6 +5,7 @@ import './index.css';
 import LandingPage from './components/LandingPage';
 import Reader from './components/Reader';
 import Article from './components/Article';
+import NotFound from './components/NotFound';
 import reportWebVitals from './reportWebVitals';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/:chapterSlug/:partSlug" element={<Reader />} />
         <Route path="/:chapterSlug" element={<Reader />} />
         <Route path="/articles/:articleSlug" element={<Article />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

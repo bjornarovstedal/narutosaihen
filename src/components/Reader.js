@@ -16,6 +16,7 @@ import { articles } from '../data/articles/WhyNarutoSaihen';
 import Chapter from './Chapter';
 import Article from './Article';
 import ChapterMenu from './ChapterMenu';
+import NotFound from './NotFound';
 
 // Helper function to create URL slugs from titles
 const createSlug = (text) => {
@@ -59,7 +60,7 @@ function Reader() {
   
   // Find chapter and part by slugs - memoize to avoid recalculation
   const findBySlug = () => {
-    if (!chapterSlug) return { chapterIndex: 0, partIndex: 0 };
+    if (!chapterSlug) return { chapterIndex: 0, partIndex: 0, valid: true };
     
     console.log('Looking for chapter with slug:', chapterSlug);
     console.log('All chapters:', allChapters.map(ch => ({ id: ch.id, title: ch.englishTitle, slug: createSlug(ch.englishTitle) })));
@@ -70,7 +71,7 @@ function Reader() {
     
     console.log('Found chapter index:', chapterIndex);
     
-    if (chapterIndex === -1) return { chapterIndex: 0, partIndex: 0 };
+    if (chapterIndex === -1) return { chapterIndex: -1, partIndex: 0, valid: false };
     
     let partIndex = 0;
     if (partSlug && allChapters[chapterIndex].parts) {
@@ -80,12 +81,14 @@ function Reader() {
       if (foundPartIndex !== -1) partIndex = foundPartIndex;
     }
     
-    return { chapterIndex, partIndex };
+    return { chapterIndex, partIndex, valid: true };
   };
   
   // Initialize state directly from URL slugs to avoid flicker
-  const [currentChapterIndex, setCurrentChapterIndex] = useState(() => findBySlug().chapterIndex);
-  const [currentPartIndex, setCurrentPartIndex] = useState(() => findBySlug().partIndex);
+  const slugResult = findBySlug();
+  const [currentChapterIndex, setCurrentChapterIndex] = useState(() => slugResult.chapterIndex >= 0 ? slugResult.chapterIndex : 0);
+  const [currentPartIndex, setCurrentPartIndex] = useState(() => slugResult.partIndex);
+  
   const currentChapter = allChapters[currentChapterIndex];
   
   console.log('Current chapter index:', currentChapterIndex);
@@ -103,6 +106,8 @@ function Reader() {
   
   // Save last viewed chapter to localStorage
   useEffect(() => {
+    if (!currentChapter) return;
+    
     const chapterSlugUrl = createSlug(currentChapter.englishTitle);
     const partSlugUrl = currentChapter.parts?.[currentPartIndex] ? 
       createSlug(currentChapter.parts[currentPartIndex].englishTitle) : null;
@@ -118,7 +123,7 @@ function Reader() {
   
   // Update URL when navigating without slug parameters
   useEffect(() => {
-    if (!chapterSlug) {
+    if (!chapterSlug && currentChapter) {
       const chapterSlugUrl = createSlug(currentChapter.englishTitle);
       const partSlugUrl = currentChapter.parts?.[currentPartIndex] ? 
         createSlug(currentChapter.parts[currentPartIndex].englishTitle) : null;
@@ -133,6 +138,8 @@ function Reader() {
   
   // Preload all images for the current chapter when it loads
   useEffect(() => {
+    if (!currentChapter) return;
+    
     const imagesToPreload = [];
     
     // Collect images from the chapter itself
@@ -160,7 +167,7 @@ function Reader() {
     });
     
     console.log(`Preloading ${imagesToPreload.length} images for chapter: ${currentChapter.englishTitle}`);
-  }, [currentChapterIndex]);
+  }, [currentChapterIndex, currentChapter]);
   
   const handleNavigation = (chapterIndex, partIndex = 0, preserveScrollPos = false) => {
     const chapter = allChapters[chapterIndex];
@@ -209,6 +216,11 @@ function Reader() {
     if (isArticle) {
       return <Article />;
     }
+  }
+  
+  // Return 404 if invalid chapter slug (after all hooks)
+  if (chapterSlug && !slugResult.valid) {
+    return <NotFound />;
   }
   
   return (
