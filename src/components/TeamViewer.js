@@ -5,7 +5,7 @@ const teams = [
   {
     name: "Leaf 16",
     village: "Konohagakure",
-    image: "/images/teams/leaf16.png", // or whatever the filename is
+    image: `${process.env.PUBLIC_URL}/images/teams/leaf16.png`,
     members: [
       { name: "Uzumaki Naruto" },
       { name: "Haruno Sakura" },
@@ -15,7 +15,7 @@ const teams = [
   {
     name: "Leaf 15",
     village: "Konohagakure",
-    image: "/images/teams/leaf15.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/leaf15.png`,
     members: [
       { name: "Nara Shikamaru", leader: true  },
       { name: "Akimichi Chōji" },
@@ -25,7 +25,7 @@ const teams = [
   {
     name: "Leaf 14",
     village: "Konohagakure",
-    image: "/images/teams/leaf14.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/leaf14.png`,
     members: [
       { name: "Aburame Shino" },
       { name: "Hyūga Hinata" },
@@ -35,7 +35,7 @@ const teams = [
   {
     name: "Leaf 13",
     village: "Konohagakure",
-    image: "/images/teams/leaf13.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/leaf13.png`,
     members: [
       { name: "Tenten" },
       { name: "Rock Lee" },
@@ -45,7 +45,7 @@ const teams = [
   {
     name: "Sand 3",
     village: "Sunagakure",
-    image: "/images/teams/sand3.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/sand3.png`,
     members: [
       { name: "Kankurō", leader: true },
       { name: "Gaara"},
@@ -55,7 +55,7 @@ const teams = [
   {
     name: "Sound 2",
     village: "Otogakure",
-    image: "/images/teams/sound2.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/sound2.png`,
     members: [
       { name: "Abumi Zaku", leader: true },
       { name: "Kinuta Dosu" },
@@ -65,7 +65,7 @@ const teams = [
   {
     name: "Grass 1 / \nLeaf 12",
     village: "Kusagakure",
-    image: "/images/teams/grass1.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/grass1.png`,
     members: [
       { name: "Gōmonjō Yoroi" },
       { name: "Hana Shiore", leader: true },
@@ -75,7 +75,7 @@ const teams = [
   {
     name: "Rain 4",
     village: "Amegakure",
-    image: "/images/teams/rain4.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/rain4.png`,
     members: [
       { name: "Maboroshi Shigure", leader: true },
       { name: "Yuie Baiu" },
@@ -85,7 +85,7 @@ const teams = [
   {
     name: "Rain 5",
     village: "Amegakure",
-    image: "/images/teams/rain5.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/rain5.png`,
     members: [
       { name: "Tagi" },
       { name: "Daike", leader: true },
@@ -95,7 +95,7 @@ const teams = [
   {
     name: "Stone 11",
     village: "Iwagakure",
-    image: "/images/teams/stone11.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/stone11.png`,
     members: [
       { name: "Heiwa" },
       { name: "Enakiri Koishi" },
@@ -105,7 +105,7 @@ const teams = [
   {
     name: "Stone 13",
     village: "Iwagakure",
-    image: "/images/teams/stone13.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/stone13.png`,
     members: [
       { name: "Isenishi Chinari", leader: true },
       { name: "Shinobaru Mawan" },
@@ -115,7 +115,7 @@ const teams = [
   {
     name: "Stone 14",
     village: "Iwagakure",
-    image: "/images/teams/stone14.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/stone14.png`,
     members: [
       { name: "Hatakino Nonso"},
       { name: "Asahira Shurei", leader: true },
@@ -125,7 +125,7 @@ const teams = [
   {
     name: "Mist 7",
     village: "Kirigakure",
-    image: "/images/teams/mist7.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/mist7.png`,
     members: [
       { name: "Ichita Oriru"},
       { name: "Kurokite Kusu", leader: true },
@@ -135,7 +135,7 @@ const teams = [
   {
     name: "Mist 8",
     village: "Kirigakure",
-    image: "/images/teams/mist8.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/mist8.png`,
     members: [
       { name: "Suigetsu Seisuki"},
       { name: "Kurokite Tabe", leader: true },
@@ -145,7 +145,7 @@ const teams = [
   {
     name: "Snow 1",
     village: "Yukigakure",
-    image: "/images/teams/snow1.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/snow1.png`,
     members: [
       { name: "Tsuto Fuyumi"},
       { name: "Tsuto Hairisa", leader: true },
@@ -155,7 +155,7 @@ const teams = [
   {
     name: "Cloud 11",
     village: "Kumogakure",
-    image: "/images/teams/cloud11.png",
+    image: `${process.env.PUBLIC_URL}/images/teams/cloud11.png`,
     members: [
       { name: "Ju"},
       { name: "Ke", leader: true },

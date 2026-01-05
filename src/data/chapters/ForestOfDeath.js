@@ -263,7 +263,7 @@ export const chapters = [
       available: true,
       content: 'Content for day 3...',
       images: [{
-        src: "/images/forest_of_death.png",
+        src: `${process.env.PUBLIC_URL}/images/forest_of_death.png`,
         alt: "Forest of Death Perimeter.",
         info: "The forest of death",
         component: "ForestOfDeathPerimeter"

@@ -69,7 +69,7 @@ const CircularCheckbox = ({ checked, onChange, size = 22, isMobile = false }) =>
 };
 
 const names = [
-    { label: "Mist 8", img: "/images/teams/mist8.png" , members: ["Suigetsu Seisuki", "Kurokite Tabe", "Matsumo Kora"], leader: "Kurokite Tabe", color: "#1e90ff", paths: [
+    { label: "Mist 8", img: `${process.env.PUBLIC_URL}/images/teams/mist8.png` , members: ["Suigetsu Seisuki", "Kurokite Tabe", "Matsumo Kora"], leader: "Kurokite Tabe", color: "#1e90ff", paths: [
       {
         members: ["Suigetsu Seisuki", "Kurokite Tabe", "Matsumo Kora"],
         color: "#a8cee0ff",
@@ -84,7 +84,7 @@ const names = [
       }
     ]},
     
-    { label: "Stone 14", img: "/images/teams/stone14.png", members: ["Hatakino Nonso", "Asahira Shurei", "Tanirata Natsuni"], leader: "Asahira Shurei", color: "#a0522d", paths: [
+    { label: "Stone 14", img: `${process.env.PUBLIC_URL}/images/teams/stone14.png`, members: ["Hatakino Nonso", "Asahira Shurei", "Tanirata Natsuni"], leader: "Asahira Shurei", color: "#a0522d", paths: [
       {
         members: ["Hatakino Nonso", "Asahira Shurei", "Tanirata Natsuni"],
         color: "#8a3621ff",
@@ -94,7 +94,7 @@ const names = [
       }
     ]},
 
-    { label: "Leaf 16", img: "/images/teams/leaf16.png", members: ["Uzumaki Naruto", "Haruno Sakura", "Uchiha Sasuke"], leader: "Uchiha Sasuke", color: "#228b22", paths: [
+    { label: "Leaf 16", img: `${process.env.PUBLIC_URL}/images/teams/leaf16.png`, members: ["Uzumaki Naruto", "Haruno Sakura", "Uchiha Sasuke"], leader: "Uchiha Sasuke", color: "#228b22", paths: [
       {
           members: ["Uzumaki Naruto", "Haruno Sakura", "Uchiha Sasuke"],
           color: "#1ea858ff",
@@ -141,16 +141,16 @@ const names = [
       },
     ]},
 
-    { label: "Stone 13", img: "/images/teams/stone13.png", members: ["Isenishi Chinari", "Shinobaru Mawan", "Sekitsuki Yaki"], leader: "Isenishi Chinari", color: "#d2691e", pathControl: {curve: -20}}, 
-    { label: "Rain 5", img: "/images/teams/rain5.png", members: ["Tagi", "Daike", "Edadera Utabei"], leader: "Daike", color: "#4682b4", pathControl: {curve: 0}}, 
-    { label: "Leaf 15", img: "/images/teams/leaf15.png", members: ["Naru Shikamaru", "Akimichi Chōji", "Yamanaka Ino"], leader: "Naru Shikamaru", color: "#ff4500", pathControl: {curve: 20}}, 
-    { label: "Grass 1 / Leaf 12", img: "/images/teams/grass1.png", members: ["Gōmonjō Yoroi", "Hana Shiore", "Misumi"], leader: "Hana Shiore", color: "#32cd32", pathControl: {curve: 40}}, 
-    { label: "Stone 11", img: "/images/teams/stone11.png", members: ["Heiwa", "Enakiri Koishi", "Jinsoku"], leader: "Jinsoku", color: "#d3d3d3", pathControl: {curve: 60}}, 
-    { label: "Cloud 11", img: "/images/teams/cloud11.png", members: ["Ju", "Ke", "Ru"], leader: "Ke", color: "#add8e6", pathControl: {curve: 80}}, 
-    { label: "Sound 2", img: "/images/teams/sound2.png", members: ["Abumi Zaku", "Kinuta Dosu", "Tsuchi Kin"], leader: "Abumi Zaku", color: "#ffb6c1", pathControl: {curve: 100}}, 
-    { label: "Leaf 13", img: "/images/teams/leaf13.png", members: ["Tenten", "Rock Lee", "Hyūga Neji"], leader: "Hyūga Neji", color: "#ff69b4", pathControl: {curve: 120}}, 
-    { label: "Snow 1", img: "/images/teams/snow1.png", members: ["Tsuto Fuyumi", "Tsuto Hairisa", "Tsuto Usaki"], leader: "Tsuto Hairisa", color: "#ffffff", pathControl: {curve: 140}}, 
-    { label: "Leaf 14", img: "/images/teams/leaf14.png", members: ["Aburame Shino", "Hyūga Hinata", "Inuzuka Kiba"], leader: "Inuzuka Kiba", color: "#ffdead", paths: [
+    { label: "Stone 13", img: `${process.env.PUBLIC_URL}/images/teams/stone13.png`, members: ["Isenishi Chinari", "Shinobaru Mawan", "Sekitsuki Yaki"], leader: "Isenishi Chinari", color: "#d2691e", pathControl: {curve: -20}}, 
+    { label: "Rain 5", img: `${process.env.PUBLIC_URL}/images/teams/rain5.png`, members: ["Tagi", "Daike", "Edadera Utabei"], leader: "Daike", color: "#4682b4", pathControl: {curve: 0}}, 
+    { label: "Leaf 15", img: `${process.env.PUBLIC_URL}/images/teams/leaf15.png`, members: ["Naru Shikamaru", "Akimichi Chōji", "Yamanaka Ino"], leader: "Naru Shikamaru", color: "#ff4500", pathControl: {curve: 20}}, 
+    { label: "Grass 1 / Leaf 12", img: `${process.env.PUBLIC_URL}/images/teams/grass1.png`, members: ["Gōmonjō Yoroi", "Hana Shiore", "Misumi"], leader: "Hana Shiore", color: "#32cd32", pathControl: {curve: 40}}, 
+    { label: "Stone 11", img: `${process.env.PUBLIC_URL}/images/teams/stone11.png`, members: ["Heiwa", "Enakiri Koishi", "Jinsoku"], leader: "Jinsoku", color: "#d3d3d3", pathControl: {curve: 60}}, 
+    { label: "Cloud 11", img: `${process.env.PUBLIC_URL}/images/teams/cloud11.png`, members: ["Ju", "Ke", "Ru"], leader: "Ke", color: "#add8e6", pathControl: {curve: 80}}, 
+    { label: "Sound 2", img: `${process.env.PUBLIC_URL}/images/teams/sound2.png`, members: ["Abumi Zaku", "Kinuta Dosu", "Tsuchi Kin"], leader: "Abumi Zaku", color: "#ffb6c1", pathControl: {curve: 100}}, 
+    { label: "Leaf 13", img: `${process.env.PUBLIC_URL}/images/teams/leaf13.png`, members: ["Tenten", "Rock Lee", "Hyūga Neji"], leader: "Hyūga Neji", color: "#ff69b4", pathControl: {curve: 120}}, 
+    { label: "Snow 1", img: `${process.env.PUBLIC_URL}/images/teams/snow1.png`, members: ["Tsuto Fuyumi", "Tsuto Hairisa", "Tsuto Usaki"], leader: "Tsuto Hairisa", color: "#ffffff", pathControl: {curve: 140}}, 
+    { label: "Leaf 14", img: `${process.env.PUBLIC_URL}/images/teams/leaf14.png`, members: ["Aburame Shino", "Hyūga Hinata", "Inuzuka Kiba"], leader: "Inuzuka Kiba", color: "#ffdead", paths: [
       {
         members: ["Aburame Shino", "Hyūga Hinata", "Inuzuka Kiba"],
         color: "#1ea858ff",
@@ -160,7 +160,7 @@ const names = [
       }
     ]},
 
-    { label: "Mist 7", img: "/images/teams/mist7.png", members: ["Ichita Oriru", "Kurokite Kusu", "Igataki Yosaru"], leader: "Kurokite Kusu", color: "#1e90ff", paths: [
+    { label: "Mist 7", img: `${process.env.PUBLIC_URL}/images/teams/mist7.png`, members: ["Ichita Oriru", "Kurokite Kusu", "Igataki Yosaru"], leader: "Kurokite Kusu", color: "#1e90ff", paths: [
       {
         members: ["Ichita Oriru", "Kurokite Kusu", "Igataki Yosaru"],
         color: "#a8cee0ff",
@@ -170,7 +170,7 @@ const names = [
       }
     ]},
 
-    { label: "Sand 3", img: "/images/teams/sand3.png", members: ["Kankurō", "Gaara", "Temari"], leader: "Kankurō", color: "#deb887", paths: [
+    { label: "Sand 3", img: `${process.env.PUBLIC_URL}/images/teams/sand3.png`, members: ["Kankurō", "Gaara", "Temari"], leader: "Kankurō", color: "#deb887", paths: [
       {
         members: ["Kankurō", "Gaara", "Temari"],
         color: "#deb887",
@@ -181,7 +181,7 @@ const names = [
       }
     ]},
 
-    { label: "Rain 4", img: "/images/teams/rain4.png", members: ["Maboroshi Shigure", "Yuie Baiu", "Oboro"], leader: "Maboroshi Shigure", color: "#4682b4", paths: [
+    { label: "Rain 4", img: `${process.env.PUBLIC_URL}/images/teams/rain4.png`, members: ["Maboroshi Shigure", "Yuie Baiu", "Oboro"], leader: "Maboroshi Shigure", color: "#4682b4", paths: [
         {
           members: ["Maboroshi Shigure", "Oboro", "Yuie Baiu"],
           color: "#1e4b86ff",
@@ -450,7 +450,7 @@ function ForestOfDeathPerimeterImage({ src, alt, info }) {
               }}
             >
               <img
-                src="/images/tower.png"
+                src={`${process.env.PUBLIC_URL}/images/tower.png`}
                 alt="Tower"
                 style={{
                   width: '100%',
@@ -661,7 +661,7 @@ function ForestOfDeathPerimeterImage({ src, alt, info }) {
               }}
             >
               <img
-                src="/images/forest_of_death_perimeter.png"
+                src={`${process.env.PUBLIC_URL}/images/forest_of_death_perimeter.png`}
                 alt="Forest perimeter"
                 style={{
                   width: '100%',
