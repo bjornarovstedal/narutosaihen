@@ -131,6 +131,37 @@ function Reader() {
     }
   }, []);
   
+  // Preload all images for the current chapter when it loads
+  useEffect(() => {
+    const imagesToPreload = [];
+    
+    // Collect images from the chapter itself
+    if (currentChapter.images) {
+      currentChapter.images.forEach(image => {
+        if (image.src) imagesToPreload.push(image.src);
+      });
+    }
+    
+    // Collect images from all parts of the chapter
+    if (currentChapter.parts) {
+      currentChapter.parts.forEach(part => {
+        if (part.images) {
+          part.images.forEach(image => {
+            if (image.src) imagesToPreload.push(image.src);
+          });
+        }
+      });
+    }
+    
+    // Preload all collected images
+    imagesToPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+    
+    console.log(`Preloading ${imagesToPreload.length} images for chapter: ${currentChapter.englishTitle}`);
+  }, [currentChapterIndex]);
+  
   const handleNavigation = (chapterIndex, partIndex = 0, preserveScrollPos = false) => {
     const chapter = allChapters[chapterIndex];
     const chapterSlugUrl = createSlug(chapter.englishTitle);

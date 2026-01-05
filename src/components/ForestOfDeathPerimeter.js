@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InteractiveImage from './InteractiveImage';
 
 // Reusable circular checkbox component
@@ -226,6 +226,15 @@ function ForestOfDeathPerimeterImage({ src, alt, info }) {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  // Preload all team images when component mounts
+  useEffect(() => {
+    names.forEach(team => {
+      const img = new Image();
+      img.src = team.img;
+    });
+    console.log(`Preloading ${names.length} team images for Forest of Death`);
   }, []);
   
   // Adjust size and scale based on screen width
