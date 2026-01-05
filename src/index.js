@@ -15,7 +15,7 @@ function App() {
         <Route path="/about" element={<Article />} />
         <Route path="/:chapterSlug/:partSlug" element={<Reader />} />
         <Route path="/:chapterSlug" element={<Reader />} />
-        <Route path="/article/:articleSlug" element={<Article />} />
+        <Route path="/articles/:articleSlug" element={<Article />} />
       </Routes>
     </BrowserRouter>
   );
