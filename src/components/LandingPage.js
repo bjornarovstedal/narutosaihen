@@ -52,7 +52,7 @@ function LandingPage() {
         <section className="about-section" style={{ marginBottom: '2.5rem' }}>
           <p>
             A fan-rewrite of Naruto that aims to{' '}
-            <span className="about-link" onClick={() => navigate('/whynarutosaihen')}>
+            <span className="about-link" onClick={() => navigate('/article/whynarutosaihen')}>
               make sense of it all
             </span>.
           </p>
@@ -104,7 +104,7 @@ function LandingPage() {
                   if (update.chapterSlug) {
                     navigate(`/${update.chapterSlug}`);
                   } else if (update.articleSlug) {
-                    navigate(`/${update.articleSlug}`);
+                    navigate(`/article/${update.articleSlug}`);
                   }
                 }}
               >

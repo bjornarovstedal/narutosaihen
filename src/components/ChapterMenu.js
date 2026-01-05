@@ -38,7 +38,7 @@ function ChapterMenu({
                     
                     // Verify the article still exists
                     if (article) {
-                      navigate(`/${article.slug}`);
+                      navigate(`/article/${article.slug}`);
                       return;
                     }
                   } catch (e) {
@@ -48,7 +48,7 @@ function ChapterMenu({
                 
                 // Fallback to first article
                 if (articles.length > 0) {
-                  navigate(`/${articles[0].slug}`);
+                  navigate(`/article/${articles[0].slug}`);
                 }
               }}>
                 Articles
