@@ -15,7 +15,7 @@ function NotFound() {
           <h1>404</h1>
           <p>This page seems to have gone missing...</p>
           <Link to="/" className="home-link">
-            Return Home
+            Return to Konoha
           </Link>
         </div>
       </div>
