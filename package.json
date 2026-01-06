@@ -16,6 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "stop": "taskkill /F /IM node.exe /T",
     "build": "react-scripts build",
     "postbuild": "copy build\\index.html build\\404.html",
     "test": "react-scripts test",

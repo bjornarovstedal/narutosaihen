@@ -19,6 +19,7 @@
 }
 
 .chapter-title-kanji {
+  font-family: 'Noto Serif JP', 'Georgia', serif;
   color: #a3a3a3;
   font-size: 2em;
   font-style: italic;
@@ -339,6 +340,7 @@
   }
 
   .chapter-title-kanji {
+    font-family: 'Noto Serif JP', 'Georgia', serif;
     font-size: 1.875rem;
     margin-bottom: 2rem;
     word-wrap: break-word;

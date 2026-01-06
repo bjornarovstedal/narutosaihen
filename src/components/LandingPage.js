@@ -109,12 +109,10 @@ function LandingPage() {
                 }}
               >
                 <span className="update-date">{new Date(update.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                <div>
-                  <span className="update-type">
-                    {update.type === 'bugfix' ? 'Bug Fix 🐛' : update.type}
-                  </span>
-                  <span className="update-description">{update.description}</span>
-                </div>
+                <span className="update-type">
+                  {update.type === 'bugfix' ? 'Bug Fix 🐛' : update.type}
+                </span>
+                <span className="update-description">{update.description}</span>
               </div>
             ))}
           </div>
@@ -128,7 +126,7 @@ function LandingPage() {
           )}
         </section>
         
-        <div style={{ textAlign: 'center', padding: '3rem 0 1.5rem', color: '#888888', fontSize: '0.85rem' }}>
+        <div style={{ textAlign: 'center', padding: '2rem 0 1rem', color: '#888888', fontSize: '0.85rem' }}>
           narutosaihen@proton.me
         </div>
       </div>

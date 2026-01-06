@@ -304,7 +304,7 @@ function Article() {
           </button>
         </div>
       </div>
-      <div style={{ textAlign: 'center', padding: '4rem 0 2rem', color: '#888888', fontSize: '0.85rem' }}>
+      <div style={{ textAlign: 'center', padding: '3rem 0 1rem', color: '#888888', fontSize: '0.85rem' }}>
         narutosaihen@proton.me
       </div>
     </div>

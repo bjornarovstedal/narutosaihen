@@ -24,7 +24,7 @@
 }
 
 .landing-kanji {
-  font-family: 'Georgia', Georgia, serif;
+  font-family: 'Noto Serif JP', 'Georgia', serif;
   font-size: 2rem;
   color: #a3a3a3;
   margin-top: 0;
@@ -84,8 +84,9 @@
 
 .update-item {
   display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 0.75rem;
+  grid-template-columns: auto auto 1fr;
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
   align-items: center;
   padding: 0.75rem;
   margin-bottom: 0.5rem;
@@ -121,8 +122,7 @@
   background: #000000;
   color: #ffffff;
   width: fit-content;
-  display: inline-block;
-  margin-right: 0.5rem;
+  white-space: nowrap;
 }
 
 .update-new .update-type {
@@ -149,7 +149,6 @@
   font-family: 'Georgia', Georgia, serif;
   font-size: 0.95rem;
   color: #000000;
-  display: inline;
 }
 
 .enter-button {
