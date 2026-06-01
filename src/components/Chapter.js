@@ -618,7 +618,7 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
               ←
             </span>
             
-            <span className="current-part-label">{parts[currentPart].englishTitle}</span>
+            <span className="current-part-label">{parts[currentPart].label}</span>
             
             <span 
               className={`nav-text nav-right ${!hasNextAvailable ? 'disabled' : ''}`}

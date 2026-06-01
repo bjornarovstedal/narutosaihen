@@ -1,0 +1,106 @@
+/* Compendium-specific styling.
+   Currently mirrors chapter styling, but lives in its own file/namespace
+   so it can be tweaked independently of Chapter.css. */
+
+.compendium-page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.compendium-title-english,
+.compendium-title-romanized,
+.compendium-title-kanji {
+  text-align: center;
+  margin: 0.25rem 0;
+}
+
+.compendium-title-english {
+  font-size: 3rem;
+  font-style: italic;
+}
+
+.compendium-title-romanized {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+.compendium-title-kanji {
+  font-family: 'Noto Serif JP', 'Georgia', serif;
+  color: #a3a3a3;
+  font-size: 2em;
+  font-style: italic;
+  margin-bottom: 3rem;
+}
+
+.compendium {
+  max-width: 700px;
+  margin: 2rem auto;
+  margin-left: max(calc(50% - 350px), 284px);
+  padding: 2.5rem 2rem;
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
+}
+
+.compendium-content {
+  font-size: 1.1rem;
+  line-height: 1.625;
+  color: #000000;
+  white-space: pre-line;
+}
+
+.compendium-content .compendium-line {
+  text-indent: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+.compendium-content .compendium-line:first-of-type {
+  text-indent: 0;
+}
+
+.compendium-content .compendium-blank-line + .compendium-line {
+  text-indent: 0;
+}
+
+.compendium-content .compendium-blank-line {
+  height: 2em;
+}
+
+/* Mobile Responsive Styles for Compendium */
+@media (max-width: 768px) {
+  .compendium {
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 2rem 1rem;
+    touch-action: pan-y;
+    overscroll-behavior-x: none;
+  }
+
+  .compendium-title-english {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .compendium-title-romanized {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .compendium-title-kanji {
+    font-family: 'Noto Serif JP', 'Georgia', serif;
+    font-size: 1.875rem;
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .compendium-content {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}

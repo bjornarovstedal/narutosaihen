@@ -10,7 +10,7 @@ export const articles = [
         content: [
           "Let's face it; the story of Naruto is lacking in many aspects.",
           "Saihen seeks to correct plot inconsistencies, deepen shallow characters, and tighten worldbuilding. This is not to say the original series is entirely meritless. <b>Kishimoto did superbly under the constraints of serialization.</b> There is a reason the work resonates with so many.",
-          "If I didn't love Naruto, I wouldn't have bothered fixing it."
+          "If I didn't love Naruto, I wouldn't have bothered with Saihen."
         ]
       },
       {
@@ -26,7 +26,7 @@ export const articles = [
               "When power <i>does</i> then break limits, it's going to hit hard as fuck. There is one absolute apex; Kurama-juiced-Naruto vs Pain."
             ]
           },
-          {
+          { 
             title: "More seinen.",
             description: [
               "Saihen leans harder into Japanese mythology and traditional politics. This not a tonal pivot as much as simple furtherance; the original series was heavily inspired by mythology and gestures in the direction of political drama with its worldbuilding, the Five Kage Summit, then again when the war arc begins."
@@ -74,12 +74,18 @@ export const articles = [
             description: [
               "Shinobi don't war."
             ]
+          },
+          {
+            title: "Better romances.",
+            description: [
+              "Romances are integral to the original series, but it doesn't elaborate upon them sufficiently. Saihen will."
+            ]
           }
         ]
       },
       {
         content: [
-          "There are a ton more small changes (the Gates, team name convention, villages, characters, arcs) which I might formalize a write-up on later. For now, I just recommend reading the available chapters. <a href='/whatwontdie'>What Won't Die</a> is probably the strongest; if that can't hook you, then Naruto: Saihen isn't for you."
+          "There are a ton more small changes (the Gates, team name convention, villages, characters, arcs, mechanisms) which I might formalize a write-up on later. For now, I just recommend reading the available chapters. <a href='/whatwontdie'>What Won't Die</a> is probably the strongest; if that can't hook you, then Naruto: Saihen isn't for you."
         ]
       }
     ]

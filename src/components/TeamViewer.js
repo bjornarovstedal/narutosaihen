@@ -167,6 +167,13 @@ const teams = [
 
 function TeamViewer() {
   const [currentTeam, setCurrentTeam] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const [touchStartY, setTouchStartY] = useState(null);
+  const [isHorizontalSwipe, setIsHorizontalSwipe] = useState(false);
+  const [swipeOffset, setSwipeOffset] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitioningFromTeam, setTransitioningFromTeam] = useState(null);
 
   // Preload all team images
   useEffect(() => {
@@ -184,37 +191,269 @@ function TeamViewer() {
     setCurrentTeam((prev) => (prev - 1 + teams.length) % teams.length);
   };
 
+  // Touch event handlers for swipe navigation between teams
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    // Always stop propagation to prevent Chapter from handling touch events
+    e.stopPropagation();
+    
+    if (isTransitioning) return;
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchStartY(e.targetTouches[0].clientY);
+    setSwipeOffset(0);
+    setIsHorizontalSwipe(false);
+  };
+
+  const onTouchMove = (e) => {
+    if (isTransitioning) return;
+    
+    if (touchStart !== null && touchStartY !== null) {
+      const currentX = e.targetTouches[0].clientX;
+      const currentY = e.targetTouches[0].clientY;
+      const diffX = Math.abs(currentX - touchStart);
+      const diffY = Math.abs(currentY - touchStartY);
+      
+      // Determine direction on first significant movement
+      if (touchEnd === null && (diffX > 5 || diffY > 5)) {
+        const isHorizontal = diffX > diffY;
+        setIsHorizontalSwipe(isHorizontal);
+        
+        if (isHorizontal) {
+          // Horizontal swipe - block vertical scrolling immediately
+          e.preventDefault();
+          e.stopPropagation();
+          setTouchEnd(currentX); // Mark as valid for team navigation
+        } else {
+          // Vertical scroll - allow it but block team navigation
+          setTouchEnd(-1); // Special marker to prevent team navigation
+          return; // Don't process any team navigation logic
+        }
+      }
+      
+      // For already-determined horizontal swipes
+      if (isHorizontalSwipe && touchEnd !== null && touchEnd !== -1) {
+        e.preventDefault(); // Block vertical scrolling
+        e.stopPropagation(); // Block Chapter navigation
+        
+        const currentOffset = currentX - touchStart;
+        
+        // Check boundaries and limit offset
+        let limitedOffset = currentOffset;
+        if (currentOffset > 0 && currentTeam === 0) {
+          limitedOffset = 0; // No previous team, don't allow right swipe
+        } else if (currentOffset < 0 && currentTeam === teams.length - 1) {
+          limitedOffset = 0; // No next team, don't allow left swipe
+        } else {
+          // Limit the swipe offset to prevent excessive dragging
+          limitedOffset = Math.max(-300, Math.min(300, currentOffset));
+        }
+        
+        setSwipeOffset(limitedOffset);
+        setTouchEnd(currentX);
+      }
+    }
+  };
+
+  const onTouchEnd = (e) => {
+    // Always stop propagation to prevent Chapter navigation
+    e.stopPropagation();
+    
+    if (!touchStart || !touchEnd || isTransitioning || !isHorizontalSwipe) {
+      setSwipeOffset(0);
+      setTouchStart(null);
+      setTouchEnd(null);
+      setIsHorizontalSwipe(false);
+      return;
+    }
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentTeam < teams.length - 1) {
+      setTransitioningFromTeam(currentTeam);
+      setIsTransitioning(true);
+      // Animate the full width transition
+      setSwipeOffset(-window.innerWidth);
+      
+      setTimeout(() => {
+        // Change team
+        nextTeam();
+        // Use requestAnimationFrame to ensure all state updates happen together
+        requestAnimationFrame(() => {
+          setIsTransitioning(false);
+          setTransitioningFromTeam(null);
+          setSwipeOffset(0);
+        });
+      }, 300);
+    } else if (isRightSwipe && currentTeam > 0) {
+      setTransitioningFromTeam(currentTeam);
+      setIsTransitioning(true);
+      // Animate the full width transition
+      setSwipeOffset(window.innerWidth);
+      
+      setTimeout(() => {
+        // Change team
+        prevTeam();
+        // Use requestAnimationFrame to ensure all state updates happen together
+        requestAnimationFrame(() => {
+          setIsTransitioning(false);
+          setTransitioningFromTeam(null);
+          setSwipeOffset(0);
+        });
+      }, 300);
+    } else {
+      // Snap back if swipe was too short
+      setSwipeOffset(0);
+    }
+    
+    setTouchStart(null);
+    setTouchEnd(null);
+    setIsHorizontalSwipe(false);
+  };
+  
+  // Use transitioning team data for previews if mid-transition, otherwise use current
+  const teamIndexForPreviews = transitioningFromTeam !== null ? transitioningFromTeam : currentTeam;
   const team = teams[currentTeam];
+  const prevTeamData = teamIndexForPreviews > 0 ? teams[teamIndexForPreviews - 1] : null;
+  const nextTeamData = teamIndexForPreviews < teams.length - 1 ? teams[teamIndexForPreviews + 1] : null;
 
   return (
-    <div className="team-viewer">
-      <img src={team.image} alt={team.name} className="team-viewer-image" />
-      <div className="team-counter">{currentTeam + 1} / {teams.length}</div>
-      <div className="team-header">
-        <button onClick={prevTeam} className="nav-arrow" disabled={currentTeam === 0}>
-          ←
-        </button>
-        
-        <h3>{team.name}</h3>
-        
-        <button onClick={nextTeam} className="nav-arrow" disabled={currentTeam === teams.length - 1}>
-          →
-        </button>
-      </div>
-      
-      <div className="team-info">
-        <div className="team-members">
-          {team.members.map((member, idx) => (
-            <div key={idx} className="team-member">
-              <span className={member.leader ? "member-name leader" : "member-name"}>
-                {member.name}
-              </span>
-              {member.role && <span className="member-role"> ({member.role})</span>}
+    <div 
+      className="team-viewer"
+      style={{ position: 'relative', overflow: 'hidden' }}
+    >
+      <div
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        {/* Previous team preview */}
+        {prevTeamData && (swipeOffset > 0 || (isTransitioning && swipeOffset !== 0)) && (
+          <div 
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              pointerEvents: 'none',
+              zIndex: 1,
+              transform: `translateX(${swipeOffset - window.innerWidth}px)`,
+              transition: isTransitioning ? 'transform 0.3s ease-out' : 'none',
+            }}
+          >
+            <img src={prevTeamData.image} alt={prevTeamData.name} className="team-viewer-image" />
+            
+            <div className="team-counter" style={{ visibility: 'hidden' }}>{currentTeam + 1} / {teams.length}</div>
+            
+            <div className="team-header">
+              <button className="nav-arrow" style={{ visibility: 'hidden' }} disabled>←</button>
+              <h3>{prevTeamData.name}</h3>
+              <button className="nav-arrow" style={{ visibility: 'hidden' }} disabled>→</button>
             </div>
-          ))}
+            
+            <div className="team-info">
+              <div className="team-members">
+                {prevTeamData.members.map((member, idx) => (
+                  <div key={idx} className="team-member">
+                    <span className={member.leader ? "member-name leader" : "member-name"}>
+                      {member.name}
+                    </span>
+                    {member.role && <span className="member-role"> ({member.role})</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {/* Current team */}
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          {/* Sliding content wrapper */}
+          <div style={{
+            transform: `translateX(${swipeOffset}px)`,
+            transition: isTransitioning ? 'transform 0.3s ease-out' : 'none',
+          }}>
+            <img src={team.image} alt={team.name} className="team-viewer-image" />
+          </div>
+          
+          <div className="team-counter">{currentTeam + 1} / {teams.length}</div>
+          
+          <div className="team-header">
+            <button onClick={prevTeam} className="nav-arrow" disabled={currentTeam === 0}>
+              ←
+            </button>
+            
+            <h3 style={{
+              transform: `translateX(${swipeOffset}px)`,
+              transition: isTransitioning ? 'transform 0.3s ease-out' : 'none',
+            }}>{team.name}</h3>
+            
+            <button onClick={nextTeam} className="nav-arrow" disabled={currentTeam === teams.length - 1}>
+              →
+            </button>
+          </div>
+          
+          <div className="team-info">
+            <div style={{
+              transform: `translateX(${swipeOffset}px)`,
+              transition: isTransitioning ? 'transform 0.3s ease-out' : 'none',
+            }}>
+              <div className="team-members">
+                {team.members.map((member, idx) => (
+                  <div key={idx} className="team-member">
+                    <span className={member.leader ? "member-name leader" : "member-name"}>
+                      {member.name}
+                    </span>
+                    {member.role && <span className="member-role"> ({member.role})</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
+        
+        {/* Next team preview */}
+        {nextTeamData && (swipeOffset < 0 || (isTransitioning && swipeOffset !== 0)) && (
+          <div 
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              pointerEvents: 'none',
+              zIndex: 1,
+              transform: `translateX(${swipeOffset + window.innerWidth}px)`,
+              transition: isTransitioning ? 'transform 0.3s ease-out' : 'none',
+            }}
+          >
+            <img src={nextTeamData.image} alt={nextTeamData.name} className="team-viewer-image" />
+            
+            <div className="team-counter" style={{ visibility: 'hidden' }}>{currentTeam + 1} / {teams.length}</div>
+            
+            <div className="team-header">
+              <button className="nav-arrow" style={{ visibility: 'hidden' }} disabled>←</button>
+              <h3>{nextTeamData.name}</h3>
+              <button className="nav-arrow" style={{ visibility: 'hidden' }} disabled>→</button>
+            </div>
+            
+            <div className="team-info">
+              <div className="team-members">
+                {nextTeamData.members.map((member, idx) => (
+                  <div key={idx} className="team-member">
+                    <span className={member.leader ? "member-name leader" : "member-name"}>
+                      {member.name}
+                    </span>
+                    {member.role && <span className="member-role"> ({member.role})</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-
     </div>
   );
 }

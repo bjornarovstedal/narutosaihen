@@ -1,6 +1,18 @@
 // src/data/Updates.js
 export const updates = [
-    {
+  {
+    date: "2026-06-01",
+    type: "new",
+    description: "Compendium: Hand Seals",
+    compendiumSlug: "handseals"
+  },
+  {
+    date: "2026-01-07",
+    type: "new",
+    description: "Sasuke vs Dosu",
+    chapterSlug: "aftermath/uchihasasukevskinutadosu"
+  },
+  {
     date: "2026-01-03",
     type: "new",
     description: "Danzō's Kaigishitsu",
@@ -35,5 +47,4 @@ export const updates = [
     description: "The Forest of Death: Day 1",
     chapterSlug: "theforestofdeath/day1"
   }
-
 ];

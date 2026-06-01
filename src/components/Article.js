@@ -1,28 +1,8 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { articles } from '../data/articles/WhyNarutoSaihen';
-import { chapters as theHiddenLeaf } from '../data/chapters/TheHiddenLeaf';
-import { chapters as leaf16 } from '../data/chapters/Leaf16';
-import { chapters as theLandOfWaves } from '../data/chapters/TheLandOfWaves';
-import { chapters as forestOfDeathChapters } from '../data/chapters/ForestOfDeath';
-import { chapters as whatWontDieChapters } from '../data/chapters/WhatWontDie';
-import { chapters as deadlyIsTheViperChapters } from '../data/chapters/DeadlyIsTheViper';
-import { chapters as oneMonthChapters } from '../data/chapters/OneMonth';
-import { chapters as theFinalsChapters } from '../data/chapters/TheFinals';
-import { chapters as thePreliminariesChapters } from '../data/chapters/ThePreliminaries';
-import { chapters as theWrittenTestChapters } from '../data/chapters/TheWrittenTest';
-import { chapters as sasukeRescueMission } from '../data/chapters/SasukeRescueMission';
-import { chapters as aftermath } from '../data/chapters/Aftermath';
+import SidebarNav from './SidebarNav';
 import './Article.css';
-
-const createSlug = (text) => {
-  return text.toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '')
-    .replace(/-+/g, '-');
-};
 
 function parseText(text) {
   const parts = text.split(/(<b>.*?<\/b>|<i>.*?<\/i>|<span class='ellipsis'>.*?<\/span>|<a href='.*?'>.*?<\/a>)/g);
@@ -108,78 +88,7 @@ function Article() {
       </button>
       <nav className={`chapter-menu ${isMobileMenuOpen ? 'mobile-open' : ''} ${!isMenuVisible ? 'menu-hidden' : ''}`}>
         <div className="menu-sticky-header">
-          <div className="home-button-container">
-            <button className="home-button" onClick={() => navigate('/')}>
-              ← Home
-            </button>
-          </div>
-          <div className="home-button-container">
-            <button className="home-button" onClick={() => {
-              // Combine all chapters
-              const allChapters = [
-                ...theHiddenLeaf,
-                ...leaf16,
-                ...theLandOfWaves,
-                ...forestOfDeathChapters,
-                ...whatWontDieChapters,
-                ...deadlyIsTheViperChapters,
-                ...oneMonthChapters,
-                ...theFinalsChapters,
-                ...thePreliminariesChapters,
-                ...theWrittenTestChapters,
-                ...sasukeRescueMission,
-                ...aftermath
-              ].sort((a, b) => a.id - b.id);
-              
-              // Try to get last read chapter from localStorage
-              const lastReadStr = localStorage.getItem('lastReadChapter');
-              console.log('lastReadChapter from localStorage:', lastReadStr);
-              
-              if (lastReadStr) {
-                try {
-                  const lastRead = JSON.parse(lastReadStr);
-                  console.log('Parsed lastRead:', lastRead);
-                  const chapter = allChapters.find(ch => ch.id === lastRead.chapterId);
-                  console.log('Found chapter:', chapter);
-                  
-                  // Verify the chapter still exists and is available
-                  if (chapter && chapter.available !== false) {
-                    if (lastRead.partSlug) {
-                      navigate(`/${lastRead.chapterSlug}/${lastRead.partSlug}`);
-                    } else {
-                      navigate(`/${lastRead.chapterSlug}`);
-                    }
-                    return;
-                  }
-                } catch (e) {
-                  console.log('Error parsing lastRead:', e);
-                  // If parsing fails, continue to default behavior
-                }
-              }
-              
-              // Fallback to first available chapter
-              console.log('Falling back to first available chapter');
-              const firstAvailableChapter = allChapters.find(ch => ch.available !== false);
-              console.log('First available chapter:', firstAvailableChapter);
-              if (firstAvailableChapter) {
-                const slug = createSlug(firstAvailableChapter.englishTitle);
-                console.log('English title:', firstAvailableChapter.englishTitle);
-                console.log('Generated slug:', slug);
-                
-                // If the chapter has parts, navigate to the first part
-                if (firstAvailableChapter.parts && firstAvailableChapter.parts.length > 0) {
-                  const firstPart = firstAvailableChapter.parts[0];
-                  const partSlug = createSlug(firstPart.englishTitle);
-                  console.log('Chapter has parts, navigating to first part:', partSlug);
-                  navigate(`/${slug}/${partSlug}`);
-                } else {
-                  navigate(`/${slug}`);
-                }
-              }
-            }}>
-              Chapters
-            </button>
-          </div>
+          <SidebarNav active="articles" />
           <div className="menu-header">
             <h3>Articles</h3>
           </div>

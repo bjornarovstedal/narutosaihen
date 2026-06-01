@@ -46,6 +46,12 @@ function LandingPage() {
   return (
     <div className="landing-page">
       <div className="landing-content">
+        <img 
+          src={`${process.env.PUBLIC_URL}/images/konohaLeafHQ.png`}
+          alt="Konoha Leaf Symbol" 
+          className="landing-leaf-symbol"
+        />
+        
         <h1 className="landing-title">Naruto: Saihen</h1>
         <p className="landing-kanji">再 編</p>
         
@@ -99,12 +105,14 @@ function LandingPage() {
             {(updatesExpanded ? updates : updates.slice(0, 3)).map((update, index) => (
               <div 
                 key={index} 
-                className={`update-item update-${update.type} ${update.chapterSlug || update.articleSlug ? 'update-clickable' : ''}`}
+                className={`update-item update-${update.type} ${update.chapterSlug || update.articleSlug || update.compendiumSlug ? 'update-clickable' : ''}`}
                 onClick={() => {
                   if (update.chapterSlug) {
                     navigate(`/${update.chapterSlug}`);
                   } else if (update.articleSlug) {
                     navigate(`/articles/${update.articleSlug}`);
+                  } else if (update.compendiumSlug) {
+                    navigate(`/compendium/${update.compendiumSlug}`);
                   }
                 }}
               >

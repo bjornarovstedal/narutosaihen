@@ -9,9 +9,7 @@ export const chapters = [
     parts: [
         {
             englishTitle: "Danzō's Kaigishitsu",
-            romanizedTitle: "tbd",
-            kanjiTitle: "tbd",
-            label: "tbd", 
+            label: "Danzō's Kaigishitsu",
             available: true,
             content: `All the jōnin had gathered in Konoha’s kaigishitsu, the sanctified hall for the meeting between the hokage and the village’s jōnin. Their ranks had recently grown, with Kabuto and Anko joining not long ago, and Kurenai somewhat earlier. Kabuto the traitor was not among them now. Neither were Ibiki and Yamato, both preoccupied by their commitments to Root. Aside from them, all were present. Aburame Shibi, Akimichi Chōza, Nara Shikaku, and Yamanaka Inoichi were among them; so were the twin heads of the Hyūga clan, Hiashi and Hizashi, whose simultaneous attendance was rare. The second-to-last row – Might Guy, Hatake Kakashi, Sarutobi Asuma, and Yūhi Kurenai – was fully present. Together they all occupied a majority of the sixteen mats. Two of the four mats in the first row were vacant; only Hiashi and Hizashi stood before the central pair.
                     The most senior mat belonged to Shimura Danzō, but it would not be sat today. The aged shinobi arrived somewhat belatedly, and instead of assuming his usual place, he ascended – slowly, his gait unsteady – onto the hokage’s mat, facing the assembled jōnin. All remained standing until he spoke.
@@ -95,16 +93,12 @@ export const chapters = [
         },
         {
             englishTitle: "The Village in the Gentle Breeze",
-            romanizedTitle: "tbd",
-            kanjiTitle: "tbd",
             label: "tbd", 
             available: false,
             content: `Content for The Village in the Gentle Breeze...`
         },
         {
             englishTitle: "The Wind of Renewal",
-            romanizedTitle: "Saiki no Kaze",
-            kanjiTitle: "再起の風",
             label: "The Wind of Renewal", 
             available: true,
             content: `The door to Kankurō’s chamber opened; not just ajar this time. The anbu, bearing a mask with wicked fangs and downturned eyes, seemed pensive. Almost sad.
@@ -148,8 +142,6 @@ export const chapters = [
         },
         {
             englishTitle: "The Reaper",
-            romanizedTitle: "tbd",
-            kanjiTitle: "tbd",
             label: "tbd", 
             available: false,
             content: `Content for The Reaper...`

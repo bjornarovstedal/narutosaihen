@@ -8,8 +8,7 @@ export const chapters = [
   parts: [
     {      
       englishTitle: "Day 1",
-      romanizedTitle: "Ichinichi-me",
-      kanjiTitle: "一 日 目",      label: "一 日 目  \"Ichinichi-me\" (Day 1)",
+      label: "Day 1",
       available: true,
       content: `Sakura pinched her nose as Naruto dropped from the branch above. He was starting to smell – sun-baked sweat and damp cloth – and he seemed completely oblivious to it. His jacket hung around his waist; his white shirt was stained with dirt and salt. The heat didn’t help. Sakura would insist they find a creek soon.
                 “No sign of the tower yet…” Naruto told her and Sasuke as he brushed leaves from his shoulders. “Are you sure we are on the right path?”
@@ -249,17 +248,13 @@ export const chapters = [
     },
     {
       englishTitle: "Day 2",
-      romanizedTitle: "Futsuka-me",
-      kanjiTitle: "二 日 目",
-      label: "二 日 目  \"Futsuka-me\" (Day 2)", 
+      label: "Day 2", 
       available: true,
       content: `Content for day 2...`
     },
     {
       englishTitle: "Day 3",
-      romanizedTitle: "Mikka-me",
-      kanjiTitle: "三 日 目",
-      label: "三 日 目  \"Mikka-me\" (Day 3)",
+      label: "Day 3",
       available: true,
       content: 'Content for day 3...',
       images: [{

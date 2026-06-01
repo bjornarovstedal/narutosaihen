@@ -210,6 +210,27 @@
   height: auto;
 }
 
+/* Desktop: scale image with screen size */
+@media (min-width: 1200px) {
+  .team-viewer {
+    max-width: 28.5rem;
+  }
+  
+  .team-viewer-image {
+    width: 28.5rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .team-viewer {
+    max-width: 33.25rem;
+  }
+  
+  .team-viewer-image {
+    width: 33.25rem;
+  }
+}
+
 .team-header {
   display: flex;
   justify-content: center;

@@ -1,6 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { articles } from '../data/articles/WhyNarutoSaihen';
+import SidebarNav from './SidebarNav';
 import '../App.css';
 
 function ChapterMenu({ 
@@ -15,7 +14,6 @@ function ChapterMenu({
   setIsMobileMenuOpen, 
   isMenuVisible 
 }) {
-  const navigate = useNavigate();
   const menuRef = useRef(null);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
@@ -164,41 +162,7 @@ function ChapterMenu({
     >
       <div className="menu-sticky-header">
         {onHome && (
-          <>
-            <div className="home-button-container">
-              <button className="home-button" onClick={onHome}>
-                ← Home
-              </button>
-            </div>
-            <div className="home-button-container">
-              <button className="home-button" onClick={() => {
-                // Try to get last read article from localStorage
-                const lastReadArticleStr = localStorage.getItem('lastReadArticle');
-                
-                if (lastReadArticleStr) {
-                  try {
-                    const lastReadArticle = JSON.parse(lastReadArticleStr);
-                    const article = articles.find(a => a.id === lastReadArticle.articleId);
-                    
-                    // Verify the article still exists
-                    if (article) {
-                      navigate(`/articles/${article.slug}`);
-                      return;
-                    }
-                  } catch (e) {
-                    // If parsing fails, continue to default behavior
-                  }
-                }
-                
-                // Fallback to first article
-                if (articles.length > 0) {
-                  navigate(`/articles/${articles[0].slug}`);
-                }
-              }}>
-                Articles
-              </button>
-            </div>
-          </>
+          <SidebarNav active="chapters" />
         )}
         <div className="menu-header">
           <h3 onClick={() => {
@@ -285,7 +249,7 @@ function ChapterMenu({
                                   }
                                 }}
                               >
-                                {part.englishTitle}
+                                {part.label}
                               </li>
                             );
                           })}

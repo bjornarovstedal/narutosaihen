@@ -8,6 +8,7 @@
 .about-container {
   max-width: 700px;
   margin: 0 auto;
+  margin-left: max(calc(50% - 350px), 284px);
   padding: 2.5rem 2rem;
   color: #ffffff;
 }
@@ -91,6 +92,12 @@
   color: #000000;
 }
 
+.about-page .home-button.active {
+  background: #ffffff;
+  color: #000000;
+  cursor: default;
+}
+
 .about-list {
   margin-left: 0;
   padding-left: 1.2rem;
@@ -141,6 +148,7 @@
 /* Responsive design */
 @media (max-width: 768px) {
   .about-container {
+    margin-left: auto;
     padding: 2rem 1.5rem;
   }
 

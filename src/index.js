@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 import LandingPage from './components/LandingPage';
 import Reader from './components/Reader';
 import Article from './components/Article';
 import NotFound from './components/NotFound';
 import reportWebVitals from './reportWebVitals';
+import HandSeals from './components/HandSeals';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/:chapterSlug/:partSlug" element={<Reader />} />
         <Route path="/:chapterSlug" element={<Reader />} />
         <Route path="/articles/:articleSlug" element={<Article />} />
+        <Route path="/compendium" element={<Navigate to="/compendium/handseals" replace />} />
+        <Route path="/compendium/handseals" element={<HandSeals />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

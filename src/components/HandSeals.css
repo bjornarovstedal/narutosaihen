@@ -1,0 +1,125 @@
+/* Hand Seals compendium entry */
+
+.hand-seals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 2.5rem;
+  row-gap: 1rem;
+  margin: 4rem 0 2rem;
+}
+
+.hand-seal {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.hand-seal-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 18rem;
+  max-width: 90vw;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  border: 1px solid #000000;
+  text-align: left;
+  pointer-events: none;
+}
+
+.hand-seal:hover .hand-seal-tooltip,
+.hand-seal:focus-within .hand-seal-tooltip {
+  display: block;
+}
+
+/* Last row (bottom 4 in a 4-column grid): show tooltip above the seal
+   so it doesn't push past the viewport bottom. */
+.hand-seal:nth-last-child(-n+4) .hand-seal-tooltip {
+  top: auto;
+  bottom: 100%;
+}
+
+.hand-seal-tooltip-title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.hand-seal-tooltip-subtitle {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.hand-seal-tooltip-description {
+  margin: 0;
+}
+
+.hand-seal-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hand-seal-caption {
+  margin-top: 0.1rem;
+  font-family: 'Georgia', Georgia, serif;
+  font-size: 0.95rem;
+  color: #000000;
+  letter-spacing: 0.05em;
+}
+
+/* Desktop: scale the page ~1.4x wider than the standard chapter column so
+   the grid (and images) read at a larger size. Clamped to viewport so it
+   never overflows on mid-width desktops. */
+@media (min-width: 769px) {
+  .compendium.compendium-wide {
+    max-width: min(980px, calc(100vw - 300px));
+    margin-left: max(calc(50% - 490px), 284px);
+  }
+
+  .hand-seals-grid {
+    column-gap: 3rem;
+    row-gap: 0.75rem;
+    margin: 6rem 0 0rem;
+  }
+
+  .hand-seal-caption {
+    font-size: 1.65rem;
+    margin-top: -0.5rem;
+  }
+}
+
+/* Mobile: swipeable viewer takes over (see HandSealViewer), so the grid
+   rules below only apply if it's ever rendered as a fallback. */
+@media (max-width: 768px) {
+  .hand-seals-grid {
+    column-gap: 1.25rem;
+    row-gap: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .hand-seal-caption {
+    font-size: 0.8rem;
+    margin-top: 0.05rem;
+  }
+}
+
+/* Mobile swipe-viewer description text */
+.hand-seal-mobile-subtitle {
+  font-style: italic;
+  font-size: 1.05rem;
+  margin: 0.5rem 1rem 0.75rem;
+  text-align: center;
+}
+
+.hand-seal-mobile-description {
+  margin: 0 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
