@@ -11,6 +11,7 @@ import { chapters as theFinalsChapters } from '../data/chapters/TheFinals';
 import { chapters as thePreliminariesChapters } from '../data/chapters/ThePreliminaries';
 import { chapters as theWrittenTestChapters } from '../data/chapters/TheWrittenTest';
 import { chapters as sasukeRescueMission } from '../data/chapters/SasukeRescueMission';
+import { chapters as sevenShadowSummit } from '../data/chapters/SevenShadowSummit';
 import { chapters as aftermath } from '../data/chapters/Aftermath';
 import { articles } from '../data/articles/WhyNarutoSaihen';
 import Chapter from './Chapter';
@@ -42,6 +43,7 @@ const allChapters = [
   ...thePreliminariesChapters,
   ...theWrittenTestChapters,
   ...sasukeRescueMission,
+  ...sevenShadowSummit,
   ...aftermath
 ].sort((a, b) => a.id - b.id);
 
@@ -148,12 +150,24 @@ function Reader() {
         if (image.src) imagesToPreload.push(image.src);
       });
     }
+
+    if (currentChapter.bottomImages) {
+      currentChapter.bottomImages.forEach(image => {
+        if (image.src) imagesToPreload.push(image.src);
+      });
+    }
     
     // Collect images from all parts of the chapter
     if (currentChapter.parts) {
       currentChapter.parts.forEach(part => {
         if (part.images) {
           part.images.forEach(image => {
+            if (image.src) imagesToPreload.push(image.src);
+          });
+        }
+
+        if (part.bottomImages) {
+          part.bottomImages.forEach(image => {
             if (image.src) imagesToPreload.push(image.src);
           });
         }
@@ -242,6 +256,7 @@ function Reader() {
         romanizedTitle={currentChapter.romanizedTitle}
         kanjiTitle={currentChapter.kanjiTitle}
         content={currentChapter.content} 
+        context={currentChapter.context}
         images={currentChapter.images}
         parts={currentChapter.parts}
         allChapters={allChapters}
@@ -255,6 +270,7 @@ function Reader() {
         isMenuVisible={isMenuVisible}
         setIsMenuVisible={setIsMenuVisible}
         preserveScrollRef={preserveScrollRef}
+        bottomImages={currentChapter.bottomImages}
       />
     </>
   );

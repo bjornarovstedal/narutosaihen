@@ -170,7 +170,7 @@ function ChapterMenu({
             setIsExpanded(newValue);
             localStorage.setItem('chaptersExpanded', JSON.stringify(newValue));
           }} style={{ cursor: 'pointer', userSelect: 'none' }}>
-            Chapters <span className={`chevron ${isExpanded ? 'chevron-up' : 'chevron-down'}`}>›</span>
+            Chapters <span className={`chevron ${isExpanded ? 'chevron-down' : ''}`}>›</span>
           </h3>
         </div>
       </div>

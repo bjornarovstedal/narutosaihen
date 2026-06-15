@@ -9,7 +9,7 @@ export const articles = [
         heading: "The Goal",
         content: [
           "Let's face it; the story of Naruto is lacking in many aspects.",
-          "Saihen seeks to correct plot inconsistencies, deepen shallow characters, and tighten worldbuilding. This is not to say the original series is entirely meritless. <b>Kishimoto did superbly under the constraints of serialization.</b> There is a reason the work resonates with so many.",
+          "Saihen seeks to correct plot inconsistencies, deepen shallow characters, and tighten worldbuilding. This is not to say the original series is meritless. Far from it. <b>Kishimoto did superbly under the constraints of serialization.</b> There is a reason the work resonates with so many.",
           "If I didn't love Naruto, I wouldn't have bothered with Saihen."
         ]
       },
@@ -33,9 +33,15 @@ export const articles = [
             ]
           },
           {
+            title: "Shippūden gets split.",
+            description: [
+              "Akatsuki arc becomes Part II, war arc becomes Part III." 
+            ]
+          },
+          {
             title: "Hand seals are absolute.",
             description: [
-              "All jutsu require seals. No exceptions. A comprehensive system will prevent drift."
+              "All jutsu require seals. No exceptions. <a href='/compendium/handseals'>A comprehensive system</a> prevents drift." 
             ]
           },
           {
@@ -48,44 +54,38 @@ export const articles = [
           {
             title: "Less Sasuke moping.",
             description: [
-              "In Part II, Naruto and Sakura will be less Sasuke obsessed."
+              "In Part II and Part III, Naruto and Sakura will be less Sasuke obsessed."
             ]
           },
           {
             title: "More focus on Konoha Twelve.",
             description: [
-              "Especially in Part II. Our roster of deuteragonists will be more<span class='ellipsis'>…</span><i>there</i>."
+              "Especially in Part II and III. Our roster of deuteragonists will be more<span class='ellipsis'>…</span><i>there</i>."
             ]
           },
           {
             title: "Jinchūriki/Bijū rebuilt.",
             description: [
-              "Gaara/Shukaku, Killer B / Gyūki, and Naruto/Kurama stay mostly intact. All others are rebuilt from the ground up with stronger yōkai influence. Some names survive. Concepts don't. "
+              "Gaara/Shukaku, Killer B / Gyūki, and Naruto/Kurama stay mostly intact. All others are rebuilt from the ground up with stronger yōkai influence. Some names survive, but that's about it."
             ]
           },
           {
             title: "One Edo Tensei.",
             description: [
-              "Madara is the <i>only character to ever be resurrected</i>. Aside from him, the dead stay dead."
-            ]
-          },
-          {
-            title: "No wars.",
-            description: [
-              "Shinobi don't war."
+              "Madara is the <i>only character to be resurrected</i>. Aside from him, the dead stay dead."
             ]
           },
           {
             title: "Better romances.",
             description: [
-              "Romances are integral to the original series, but it doesn't elaborate upon them sufficiently. Saihen will."
+              "Romances are integral to the original series, but it doesn't elaborate upon them sufficiently. I don't know if I make any concrete promises, but Saihen will probably at least try..."
             ]
           }
         ]
       },
       {
         content: [
-          "There are a ton more small changes (the Gates, team name convention, villages, characters, arcs, mechanisms) which I might formalize a write-up on later. For now, I just recommend reading the available chapters. <a href='/whatwontdie'>What Won't Die</a> is probably the strongest; if that can't hook you, then Naruto: Saihen isn't for you."
+          "There are a ton more small changes (the Gates, team name convention, villages, characters, arcs, mechanisms) which I might formalize a write-up on later. For now, I just recommend reading the available chapters and see if anything tickles your fancy. The plan is to start from the chūnin exams, as this is where Saihen starts to diverge meaningfully (although I'd still consider Part I do diligence, as it sets up what I want to do for Part II and III)."
         ]
       }
     ]

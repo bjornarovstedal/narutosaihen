@@ -6,6 +6,7 @@ import InteractiveImage from './InteractiveImage';
 import ForestOfDeathPerimeter from './ForestOfDeathPerimeter';
 import SimpleImage from './SimpleImage';
 import TeamViewer from './TeamViewer';
+import ChapterContext from './ChapterContext';
 
 const imageComponentMap = {
   ForestOfDeathPerimeter: ForestOfDeathPerimeter,
@@ -14,8 +15,11 @@ const imageComponentMap = {
 };
 
 function parseText(text) {
-  const parts = text.split(/(<i>.*?<\/i>|<span class='ellipsis'>.*?<\/span>|<a href='.*?'>.*?<\/a>)/g);
+  const parts = text.split(/(<b>.*?<\/b>|<i>.*?<\/i>|<span class='ellipsis'>.*?<\/span>|<a href='.*?'>.*?<\/a>)/g);
   return parts.map((part, index) => {
+    if (part.startsWith('<b>') && part.endsWith('</b>')) {
+      return <b key={index}>{part.slice(3, -4)}</b>;
+    }
     if (part.startsWith('<i>') && part.endsWith('</i>')) {
       return <i key={index}>{part.slice(3, -4)}</i>;
     }
@@ -32,7 +36,7 @@ function parseText(text) {
   });
 }
 
-function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [], parts = null, allChapters = [], currentChapterIndex = 0, currentPartIndex = 0, onNavigate = () => {}, onPartChange = () => {}, onHome = null, isMobileMenuOpen, setIsMobileMenuOpen, isMenuVisible, setIsMenuVisible, preserveScrollRef }) {
+function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, context = null, images = [], bottomImages = [], parts = null, allChapters = [], currentChapterIndex = 0, currentPartIndex = 0, onNavigate = () => {}, onPartChange = () => {}, onHome = null, isMobileMenuOpen, setIsMobileMenuOpen, isMenuVisible, setIsMenuVisible, preserveScrollRef }) {
   const currentPart = currentPartIndex;
   const navigate = useNavigate();
   const [isAtTop, setIsAtTop] = useState(true);
@@ -45,7 +49,7 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
   
   const displayContent = parts ? parts[currentPart].content : content;
   const displayImages = parts ? (parts[currentPart].images || []) : (images || []);
-  const displayBottomImages = parts ? (parts[currentPart].bottomImages || []) : [];
+  const displayBottomImages = parts ? (parts[currentPart].bottomImages || []) : (bottomImages || []);
   const displayContentAfterImages = parts
     ? (parts[currentPart].contentAfterImages || '')
     : '';
@@ -630,6 +634,8 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
         );
       })()}
       <h2 className="chapter-title-kanji">{kanjiTitle}</h2>
+
+      <ChapterContext context={context} />
       
       {parts && (() => {
         const hasPrevAvailable = currentPart > 0 && parts.slice(0, currentPart).some(p => p.available !== false);

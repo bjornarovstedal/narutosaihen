@@ -13,6 +13,7 @@ import { chapters as theFinalsChapters } from '../data/chapters/TheFinals';
 import { chapters as thePreliminariesChapters } from '../data/chapters/ThePreliminaries';
 import { chapters as theWrittenTestChapters } from '../data/chapters/TheWrittenTest';
 import { chapters as sasukeRescueMission } from '../data/chapters/SasukeRescueMission';
+import { chapters as sevenShadowSummit } from '../data/chapters/SevenShadowSummit';
 import { chapters as aftermath } from '../data/chapters/Aftermath';
 
 const createSlug = (text) => {
@@ -36,6 +37,7 @@ const allChapters = [
   ...thePreliminariesChapters,
   ...theWrittenTestChapters,
   ...sasukeRescueMission,
+  ...sevenShadowSummit,
   ...aftermath
 ].sort((a, b) => a.id - b.id);
 
@@ -140,7 +142,7 @@ function LandingPage() {
         
         <section className="updates-section">
           <h2 onClick={() => setUpdatesExpanded(!updatesExpanded)} style={{ cursor: 'pointer', userSelect: 'none' }}>
-            Recent Updates <span className={`chevron ${updatesExpanded ? 'chevron-up' : 'chevron-down'}`}>›</span>
+            Recent Updates <span className={`chevron ${updatesExpanded ? 'chevron-down' : ''}`}>›</span>
           </h2>
           <div className="updates-list">
             {(updatesExpanded ? updates : updates.slice(0, 3)).map((update, index) => (
