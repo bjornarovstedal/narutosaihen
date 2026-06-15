@@ -42,6 +42,52 @@ const allChapters = [
 function LandingPage() {
   const navigate = useNavigate();
   const [updatesExpanded, setUpdatesExpanded] = useState(false);
+  const [aboutVariantIndex] = useState(() => Math.floor(Math.random() * 5));
+  const navigateToWhyNarutoSaihen = () => navigate('/articles/whynarutosaihen');
+
+  const aboutVariants = [
+    () => (
+      <>
+        A fan-rewrite that may or may not be for you.{' '}
+        <span className="about-link" onClick={navigateToWhyNarutoSaihen}>
+          Find out here
+        </span>.
+      </>
+    ),
+    () => (
+      <>
+        <span className="about-link" onClick={navigateToWhyNarutoSaihen}>
+          再 (sai) = ‘again’, ‘re’- + 編 (hen) = ‘compilation’, ‘editing’, ‘arrangement’
+        </span>.
+      </>
+    ),
+    () => (
+      <>
+        Taking the story of Naruto and{' '}
+        <span className="about-link" onClick={navigateToWhyNarutoSaihen}>
+          slowing it down
+        </span>
+        .
+      </>
+    ),
+    () => (
+      <>
+        Something that is <em>different</em> to the original series.{' '}
+        <span className="about-link" onClick={navigateToWhyNarutoSaihen}>
+          See how
+        </span>.
+      </>
+    ),
+    () => (
+      <>
+        A{' '}
+        <span className="about-link" onClick={navigateToWhyNarutoSaihen}>
+          more grounded
+        </span>{' '}
+        retelling of Naruto.
+      </>
+    ),
+  ];
   
   return (
     <div className="landing-page">
@@ -56,12 +102,7 @@ function LandingPage() {
         <p className="landing-kanji">再 編</p>
         
         <section className="about-section" style={{ marginBottom: '2.5rem' }}>
-          <p>
-            A fan-rewrite of Naruto that aims to{' '}
-            <span className="about-link" onClick={() => navigate('/articles/whynarutosaihen')}>
-              make sense of it all
-            </span>.
-          </p>
+          <p>{aboutVariants[aboutVariantIndex]()}</p>
         </section>
         
         <button className="enter-button" style={{ marginBottom: '2.5rem' }} onClick={() => {

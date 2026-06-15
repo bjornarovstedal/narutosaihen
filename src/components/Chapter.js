@@ -4,10 +4,12 @@ import '../App.css';
 import './Chapter.css';
 import InteractiveImage from './InteractiveImage';
 import ForestOfDeathPerimeter from './ForestOfDeathPerimeter';
+import SimpleImage from './SimpleImage';
 import TeamViewer from './TeamViewer';
 
 const imageComponentMap = {
   ForestOfDeathPerimeter: ForestOfDeathPerimeter,
+  SimpleImage: SimpleImage,
   TeamViewer: TeamViewer,
 };
 
@@ -43,8 +45,13 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
   
   const displayContent = parts ? parts[currentPart].content : content;
   const displayImages = parts ? (parts[currentPart].images || []) : (images || []);
+  const displayBottomImages = parts ? (parts[currentPart].bottomImages || []) : [];
+  const displayContentAfterImages = parts
+    ? (parts[currentPart].contentAfterImages || '')
+    : '';
 
   const lines = displayContent.split(/\r?\n/);
+  const postImageLines = displayContentAfterImages.split(/\r?\n/);
 
   // Scroll to top when chapter or part changes, unless preserveScrollRef is true
   useEffect(() => {
@@ -362,6 +369,8 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
             partLabel: currentChapter.parts[i].label,
             hasParts: true,
             images: currentChapter.parts[i].images || [],
+            bottomImages: currentChapter.parts[i].bottomImages || [],
+            contentAfterImages: currentChapter.parts[i].contentAfterImages || '',
           };
         }
       }
@@ -382,6 +391,8 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
                   partLabel: nextChapter.parts[j].label,
                   hasParts: true,
                   images: nextChapter.parts[j].images || [],
+                  bottomImages: nextChapter.parts[j].bottomImages || [],
+                  contentAfterImages: nextChapter.parts[j].contentAfterImages || '',
                 };
               }
             }
@@ -394,6 +405,8 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
               partLabel: null,
               hasParts: false,
               images: nextChapter.images || [],
+              bottomImages: nextChapter.bottomImages || [],
+              contentAfterImages: nextChapter.contentAfterImages || '',
             };
           }
         }
@@ -417,6 +430,8 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
             partLabel: currentChapter.parts[i].label,
             hasParts: true,
             images: currentChapter.parts[i].images || [],
+            bottomImages: currentChapter.parts[i].bottomImages || [],
+            contentAfterImages: currentChapter.parts[i].contentAfterImages || '',
           };
         }
       }
@@ -437,6 +452,8 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
                   partLabel: prevChapter.parts[j].label,
                   hasParts: true,
                   images: prevChapter.parts[j].images || [],
+                  bottomImages: prevChapter.parts[j].bottomImages || [],
+                  contentAfterImages: prevChapter.parts[j].contentAfterImages || '',
                 };
               }
             }
@@ -449,6 +466,8 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
               partLabel: null,
               hasParts: false,
               images: prevChapter.images || [],
+              bottomImages: prevChapter.bottomImages || [],
+              contentAfterImages: prevChapter.contentAfterImages || '',
             };
           }
         }
@@ -528,6 +547,31 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
                 )
               ))}
             </div>
+            {(prevChapterData.bottomImages || []).map((img, idx) => {
+              const ImgComponent = img.component
+                ? imageComponentMap[img.component] || InteractiveImage
+                : InteractiveImage;
+              return (
+                <ImgComponent
+                  key={idx}
+                  src={img.src}
+                  alt={img.alt}
+                  info={img.info}
+                  teams={img.teams}
+                />
+              );
+            })}
+            {prevChapterData.contentAfterImages && (
+              <div className="chapter-content">
+                {prevChapterData.contentAfterImages.split(/\r?\n/).map((line, index) => (
+                  line.trim() === '' ? (
+                    <div key={index} className="chapter-blank-line"></div>
+                  ) : (
+                    <p key={index} className="chapter-line">{parseText(line)}</p>
+                  )
+                ))}
+              </div>
+            )}
             <hr style={{ margin: '3rem 0', border: 'none', borderTop: '1px solid #d0d0d0' }} />
             <div className="chapter-navigation-bottom">
               <span className="nav-button nav-button-left">← previous</span>
@@ -655,6 +699,33 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
           )
         )}
       </div>
+
+      {displayBottomImages.map((img, idx) => {
+        const ImgComponent = img.component
+          ? imageComponentMap[img.component] || InteractiveImage
+          : InteractiveImage;
+        return (
+          <ImgComponent
+            key={idx}
+            src={img.src}
+            alt={img.alt}
+            info={img.info}
+            teams={img.teams}
+          />
+        );
+      })}
+
+      {displayContentAfterImages && (
+        <div className="chapter-content">
+          {postImageLines.map((line, idx) =>
+            line.trim() === '' ? (
+              <div key={idx} className="chapter-blank-line"></div>
+            ) : (
+              <p key={idx} className="chapter-line">{parseText(line)}</p>
+            )
+          )}
+        </div>
+      )}
 
       {/* Bottom chapter navigation */}
       {(() => {
@@ -837,6 +908,31 @@ function Chapter({ englishTitle, romanizedTitle, kanjiTitle, content, images = [
             )
           ))}
         </div>
+        {(nextChapterData.bottomImages || []).map((img, idx) => {
+          const ImgComponent = img.component
+            ? imageComponentMap[img.component] || InteractiveImage
+            : InteractiveImage;
+          return (
+            <ImgComponent
+              key={idx}
+              src={img.src}
+              alt={img.alt}
+              info={img.info}
+              teams={img.teams}
+            />
+          );
+        })}
+        {nextChapterData.contentAfterImages && (
+          <div className="chapter-content">
+            {nextChapterData.contentAfterImages.split(/\r?\n/).map((line, index) => (
+              line.trim() === '' ? (
+                <div key={index} className="chapter-blank-line"></div>
+              ) : (
+                <p key={index} className="chapter-line">{parseText(line)}</p>
+              )
+            ))}
+          </div>
+        )}
         <hr style={{ margin: '3rem 0', border: 'none', borderTop: '1px solid #d0d0d0' }} />
         <div className="chapter-navigation-bottom">
           <span className="nav-button nav-button-left">← previous</span>
